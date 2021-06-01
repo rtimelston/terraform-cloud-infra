@@ -1,0 +1,25 @@
+resource "aws_instance" "ec2_instance" {
+  ami           = "ami-43242fsd"
+  instance_type = local.instance_type
+  tags = {
+    Name = local.instance_name
+  }
+}
+
+resource "aws_s3_bucket" "variable_s3_bucket" {
+  bucket = "${var.bucket_name}-rtelston"
+}
+
+resource "aws_s3_bucket" "variable_s3_bucket_2" {
+  bucket = var.bucket_name == "" ? "bucket-2" : var.bucket_name
+}
+
+variable "instance_tag_list" {
+  type = map(string)
+  default = {
+    Name = "RTELSTON_EC2"
+    Type = "m4.large"
+    Team = "DEV"
+  }
+}
+

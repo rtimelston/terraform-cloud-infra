@@ -1,0 +1,9 @@
+variable "bucket_name" {
+  default     = "rtelston-random-bucket-var"
+  description = "Bucket name for S3"
+}
+
+locals {
+  instance_name = "dev-instance"
+  instance_type = "t2.micro"
+}
